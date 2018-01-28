@@ -1,0 +1,4 @@
+---
+- name: Provision Workspace
+  hosts: localhost
+  connection: local
