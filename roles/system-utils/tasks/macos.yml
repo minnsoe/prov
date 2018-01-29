@@ -1,0 +1,23 @@
+---
+- name: Check if xcode command line tools present
+  shell: xcodebuild --help
+  register: xcodebuild_exec
+  ignore_errors: yes
+
+- name: Install xcode
+  shell: xcode-select --install
+  when: xcodebuild_exec.rc != 0 and '/Library/Developer/CommandLineTools' not in xcodebuild_exec.stderr
+
+- name: Check if homebrew present
+  stat: path=/usr/local/bin/brew
+  register: brew_present
+
+- name: Install homebrew
+  shell: ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  when: not brew_present.stat.exists
+
+- name: Tap into Caskroom versions
+  homebrew_tap: tap=caskroom/versions state=present
+
+- name: Install stow
+  homebrew: name=stow state=present

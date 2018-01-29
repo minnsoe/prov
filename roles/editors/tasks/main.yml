@@ -1,0 +1,23 @@
+---
+- name: Tap into d12frosted/emacs-plus
+  homebrew_tap: tap=d12frosted/emacs-plus state=present
+  when: ansible_os_family|lower == 'darwin'
+
+- name: Install emacs
+  homebrew: name=emacs-plus state=present
+  when: ansible_os_family|lower == 'darwin'
+
+- name: Setup emacs startup daemon
+  shell: brew services start d12frosted/emacs-plus/emacs-plus
+  when: ansible_os_family|lower == 'darwin'
+
+- name: Install spacemacs
+  git:
+    repo: 'https://github.com/syl20bnr/spacemacs'
+    dest: ~/.emacs.d
+
+- name: Install spacemacs configuration
+  import_role:
+    name: dotfiles
+  vars:
+    app: spacemacs

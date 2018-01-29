@@ -1,0 +1,9 @@
+---
+- name: Clone dotfiles repository
+  git:
+    repo: 'https://github.com/MinnSoe/dotfiles.git'
+    dest: ~/dotfiles
+    force: yes
+
+- name: Symlink {{ app }}
+  shell: stow -d ~/dotfiles -t ~/ {{ app }}

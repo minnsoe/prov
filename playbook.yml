@@ -2,3 +2,27 @@
 - name: Provision Workspace
   hosts: localhost
   connection: local
+
+  vars_prompt:
+    - name: ssh_passphrase
+      prompt: 'Create a SSH key passphrase'
+      default: ''
+      private: yes
+    - name: github_access_token
+      prompt: 'Provide a GitHub Access Token with Public Key write access'
+      private: yes
+
+  roles:
+    - role: system-utils
+    - role: editors
+
+  tasks:
+    - name: Load SSH public key to authorise
+      shell: cat ~/.ssh/id_ed25519.pub
+      register: ssh_pub_key
+
+    - name: Authorise SSH key on GitHub
+      github_key:
+        name: '{{ ansible_user_id }}@{{ ansible_hostname }}'
+        token: '{{ github_access_token }}'
+        pubkey: '{{ ssh_pub_key.stdout }}'
