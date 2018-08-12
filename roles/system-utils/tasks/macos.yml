@@ -17,7 +17,7 @@
   when: not brew_present.stat.exists
 
 - name: Tap into Caskroom versions
-  homebrew_tap: tap=caskroom/versions state=present
+  homebrew_tap: tap=homebrew/cask-versions state=present
 
 - name: Install stow
   homebrew: name=stow state=present
