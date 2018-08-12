@@ -3,6 +3,9 @@
   import_tasks: macos.yml
   when: ansible_os_family|lower == 'darwin'
 
+- name: Install common system utilities
+  import_tasks: common.yml
+
 - name: Create SSH keys for {{ ansible_user_id }}
   user:
     name: '{{ ansible_user_id }}'
