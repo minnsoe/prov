@@ -5,10 +5,3 @@
 
 - name: Install common system utilities
   import_tasks: common.yml
-
-- name: Create SSH keys for {{ ansible_user_id }}
-  user:
-    name: '{{ ansible_user_id }}'
-    generate_ssh_key: yes
-    ssh_key_type: ed25519
-    ssh_key_passphrase: '{{ ssh_passphrase }}'
