@@ -6,3 +6,4 @@
   roles:
     - role: system-utils
     - role: editors
+    - role: development
