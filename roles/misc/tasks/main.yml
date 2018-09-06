@@ -1,0 +1,10 @@
+---
+- name: Install misc homebrew cask applications
+  homebrew_cask: name={{ item }} state=present
+  with_items:
+    - iterm2
+    - google-chrome-beta
+    - firefox-developer-edition
+    - alfred
+    - 1password
+    - spotify

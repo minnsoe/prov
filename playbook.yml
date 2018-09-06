@@ -7,3 +7,4 @@
     - role: system-utils
     - role: editors
     - role: development
+    - role: misc
