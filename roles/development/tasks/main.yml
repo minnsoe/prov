@@ -1,4 +1,9 @@
 ---
+- name: Install cask dependencies
+  homebrew_cask: name={{ item }} state=present
+  with_items:
+    - java
+
 - name: Install development base packages
   homebrew: name={{ item }} state=present
   with_items:
