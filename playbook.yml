@@ -8,3 +8,5 @@
     - role: editors
     - role: development
     - role: misc
+    - role: zsh
+      tags: [zsh, shell]

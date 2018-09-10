@@ -1,0 +1,4 @@
+---
+
+zsh_user: '{{ ansible_user_id }}'
+zsh_homebrew_path: '/usr/local/bin/zsh'
