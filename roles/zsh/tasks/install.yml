@@ -26,3 +26,6 @@
     name: '{{ zsh_user }}'
     shell: '{{ zsh_path }}'
   become: true
+
+- name: Clone antigen into .zsh
+  git: repo=https://github.com/zsh-users/antigen.git dest={{ zsh_antigen_path }}
