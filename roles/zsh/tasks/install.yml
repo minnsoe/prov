@@ -6,6 +6,7 @@
   with_items:
     - zsh
     - git
+    - stow
 
 - name: Set zsh path to system zsh
   command: which zsh

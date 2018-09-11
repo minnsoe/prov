@@ -1,4 +1,8 @@
 ---
+- name: Link user provided zsh configuration
+  command: 'stow -d {{ zsh_dotfiles_location }} -t {{ zsh_user_home }} zsh'
+  when: zsh_should_use_dotfiles
+
 - name: Create .zshrc file if it does not exist
   copy:
     content: ''
@@ -10,7 +14,7 @@
 - name: Ensure antigen is sourced in .zshrc
   lineinfile:
     path: '{{ ansible_env.HOME }}/.zshrc'
-    line: 'source {{ zsh_antigen_path }}/antigen.zsh'
+    line: 'source $HOME/{{ zsh_antigen_directory }}/antigen.zsh'
 
 - name: Ensure antigen is applied in .zshrc after configuring
   lineinfile:
