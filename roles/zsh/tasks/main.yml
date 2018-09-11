@@ -5,5 +5,7 @@
     - install
 
 - import_tasks: configure.yml
+  vars:
+    zsh_should_use_dotfiles: true
   tags:
     - configure
