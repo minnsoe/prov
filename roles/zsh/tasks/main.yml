@@ -3,3 +3,7 @@
   tags:
     - zsh
     - install
+
+- import_tasks: configure.yml
+  tags:
+    - configure
