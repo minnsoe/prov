@@ -1,7 +1,9 @@
 ---
 - name: Link user provided zsh configuration
-  command: 'stow -d {{ zsh_dotfiles_location }} -t {{ zsh_user_home }} zsh'
-  when: zsh_should_use_dotfiles
+  include_role:
+    name: dotfiles
+  vars:
+    app: zsh
 
 - name: Create .zshrc file if it does not exist
   copy:

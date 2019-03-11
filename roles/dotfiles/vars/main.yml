@@ -1,0 +1,3 @@
+---
+zsh_should_use_dotfiles: true
+dotfiles_path: ~/dotfiles
