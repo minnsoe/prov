@@ -1,6 +1,9 @@
 ---
 - name: Install misc homebrew cask applications
-  homebrew_cask: name={{ item }} state=present
+  homebrew_cask:
+    name: '{{ item }}'
+    state: present
+    update_homebrew: yes
   with_items:
     - iterm2
     - google-chrome-beta
@@ -10,3 +13,4 @@
     - spotify
     - slack
     - adobe-creative-cloud
+  tags: misc

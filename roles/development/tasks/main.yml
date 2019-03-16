@@ -1,11 +1,17 @@
 ---
 - name: Install cask dependencies
-  homebrew_cask: name={{ item }} state=present
+  homebrew_cask:
+    name: '{{ item }}'
+    state: present
+    update_homebrew: yes
   with_items:
     - java
 
 - name: Install development base packages
-  homebrew: name={{ item }} state=present
+  homebrew:
+    name: '{{ item }}'
+    state: present
+    update_homebrew: yes
   with_items:
     # TODO: move into system-utils role
     - socat
