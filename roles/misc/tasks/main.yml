@@ -1,16 +1,15 @@
 ---
 - name: Install misc homebrew cask applications
   homebrew_cask:
-    name: '{{ item }}'
+    name:
+      - iterm2
+      - google-chrome-beta
+      - firefox-developer-edition
+      - alfred
+      - 1password
+      - spotify
+      - slack
+      - adobe-creative-cloud
     state: present
     update_homebrew: yes
-  with_items:
-    - iterm2
-    - google-chrome-beta
-    - firefox-developer-edition
-    - alfred
-    - 1password
-    - spotify
-    - slack
-    - adobe-creative-cloud
   tags: misc

@@ -1,33 +1,31 @@
 ---
 - name: Install cask dependencies
   homebrew_cask:
-    name: '{{ item }}'
+    name:
+      - java
     state: present
     update_homebrew: yes
-  with_items:
-    - java
 
 - name: Install development base packages
   homebrew:
-    name: '{{ item }}'
+    name:
+      # TODO: move into system-utils role
+      - socat
+      - htop-osx
+      - coreutils
+      - tmux
+      # Version Control
+      - git
+      - hg
+      # Development
+      - autoconf
+      - automake
+      - nvm
+      - python
+      - python3
+      - rbenv
+      - go
+      - rustup-init
+      - sbt
     state: present
     update_homebrew: yes
-  with_items:
-    # TODO: move into system-utils role
-    - socat
-    - htop-osx
-    - coreutils
-    - tmux
-    # Version Control
-    - git
-    - hg
-    # Development
-    - autoconf
-    - automake
-    - nvm
-    - python
-    - python3
-    - rbenv
-    - go
-    - rustup-init
-    - sbt
