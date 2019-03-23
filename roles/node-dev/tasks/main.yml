@@ -1,0 +1,47 @@
+---
+- name: Ensure git is installed
+  package:
+    name: git
+    state: present
+
+- block:
+    - name: GitHub API key is available
+      debug:
+        msg: 'GITHUB_AUTH_TOKEN is set'
+      when: nvm_github_auth_token | length > 0
+    - name: Check for the latest version of nvm
+      uri:
+        url: https://api.github.com/repos/creationix/nvm/releases/latest
+        method: GET
+        headers: '{{ nvm_github_auth_header if nvm_github_auth_token | length > 0 else {} }}'
+      register: nvm_latest_release
+    - name: 'Clone latest version of nvm into {{ nvm_dir }}'
+      git:
+        repo: '{{ nvm_git_repo }}'
+        dest: '{{ nvm_dir }}'
+        version: '{{ nvm_latest_release.json.tag_name | default(nvm_fallback_version) }}'
+    - name: Find installed shell profiles
+      find:
+        paths: '{{ ansible_env.HOME }}'
+        use_regex: yes
+        follow: yes
+        file_type: any
+        patterns: '^\.(zshrc|bashrc|profile)$'
+        hidden: yes
+      register: nvm_target_profiles
+    - name: 'Integrate nvm into shell profiles: {{ nvm_target_profiles | json_query("files[*].path") | join(", ") }}'
+      blockinfile:
+        path: '{{ item.path }}'
+        state: present
+        block: |
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+      loop: '{{ nvm_target_profiles.files }}'
+
+- name: Install latest long term support node runtime for user and alias to default
+  shell: |
+    . {{ nvm_dir }}/nvm.sh
+    nvm install --lts --latest-npm
+    nvm alias default "lts/*"
+    nvm use default
+  when: nvm_install_lts_global

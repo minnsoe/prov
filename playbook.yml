@@ -10,3 +10,5 @@
     - role: misc
     - role: zsh
       tags: [zsh, shell]
+    - role: node-dev
+      tags: [node, development]
