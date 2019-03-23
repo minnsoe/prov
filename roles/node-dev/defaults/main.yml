@@ -1,0 +1,8 @@
+---
+nvm_git_repo: 'https://github.com/creationix/nvm.git'
+nvm_dir: '{{ ansible_env.HOME }}/.nvm'
+nvm_fallback_version: 'master'
+nvm_install_lts_global: yes
+nvm_github_auth_token: '{{ lookup("env", "GITHUB_AUTH_TOKEN") }}'
+nvm_github_auth_header:
+  Authorization: 'token {{ nvm_github_auth_token }}'
