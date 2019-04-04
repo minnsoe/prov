@@ -4,8 +4,8 @@
     repo: 'https://github.com/MinnSoe/dotfiles.git'
     dest: ~/dotfiles
     force: yes
-  when: zsh_should_use_dotfiles == True
+  when: use_dotfiles
 
 - name: Symlink {{ app }}
   shell: stow -d {{ dotfiles_path }} -t ~/ {{ app }}
-  when: zsh_should_use_dotfiles == True
+  when: use_dotfiles

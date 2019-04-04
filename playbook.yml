@@ -3,6 +3,9 @@
   hosts: localhost
   connection: local
 
+  vars:
+    use_dotfiles: true
+
   roles:
     - role: system-utils
     - role: editors
