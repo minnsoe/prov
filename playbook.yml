@@ -15,3 +15,5 @@
       tags: [zsh, shell]
     - role: node-dev
       tags: [node, development]
+    - role: alfred
+      tags: [productivity, macos]
