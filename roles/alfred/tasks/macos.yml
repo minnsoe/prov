@@ -1,0 +1,12 @@
+---
+- name: Ensure alfred package installed
+  homebrew_cask:
+    name: alfred
+    state: upgraded
+    greedy: true
+    update_homebrew: yes
+
+- name: Disable macOS keyboard shortcut for spotlight
+  command: >-
+    /usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist -c
+    "Set AppleSymbolicHotKeys:64:enabled false"

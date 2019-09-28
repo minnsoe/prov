@@ -1,0 +1,4 @@
+---
+- name: Ensure alfred package installed and configured
+  import_tasks: macos.yml
+  when: ansible_os_family|lower == 'darwin'
