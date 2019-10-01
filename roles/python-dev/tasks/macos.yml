@@ -1,0 +1,8 @@
+---
+- name: Ensure pyenv and deps installed through homebrew
+  homebrew:
+    name:
+      - pyenv
+      - pyenv-virtualenv
+    state: present
+    update_homebrew: yes

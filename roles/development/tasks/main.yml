@@ -21,8 +21,6 @@
       - autoconf
       - automake
       - nvm
-      - python
-      - python3
       - rbenv
       - go
       - rustup-init

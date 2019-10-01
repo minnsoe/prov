@@ -15,5 +15,7 @@
       tags: [zsh, shell]
     - role: node-dev
       tags: [node, development]
+    - role: python-dev
+      tags: [python, development]
     - role: alfred
       tags: [productivity, macos]
