@@ -1,0 +1,9 @@
+---
+- name: Ensure python3 installed
+  package:
+    name: python3
+    state: present
+
+- name: Setup python dev environment for macOS
+  import_tasks: macos.yml
+  when: ansible_os_family|lower == 'darwin'
