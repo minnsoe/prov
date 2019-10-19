@@ -20,23 +20,6 @@
         repo: '{{ nvm_git_repo }}'
         dest: '{{ nvm_dir }}'
         version: '{{ nvm_latest_release.json.tag_name | default(nvm_fallback_version) }}'
-    - name: Find installed shell profiles
-      find:
-        paths: '{{ ansible_env.HOME }}'
-        use_regex: yes
-        follow: yes
-        file_type: any
-        patterns: '^\.(zshrc|bashrc|profile)$'
-        hidden: yes
-      register: nvm_target_profiles
-    - name: 'Integrate nvm into shell profiles: {{ nvm_target_profiles | json_query("files[*].path") | join(", ") }}'
-      blockinfile:
-        path: '{{ item.path }}'
-        state: present
-        block: |
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-      loop: '{{ nvm_target_profiles.files }}'
 
 - name: Install latest long term support node runtime for user and alias to default
   shell: |
