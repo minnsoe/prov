@@ -12,14 +12,3 @@
     dest: '{{ ansible_env.HOME }}/.zshrc'
     owner: '{{ zsh_user }}'
     mode: 0644
-
-- name: Ensure antigen is sourced in .zshrc
-  lineinfile:
-    path: '{{ ansible_env.HOME }}/.zshrc'
-    line: 'source $HOME/{{ zsh_antigen_directory }}/antigen.zsh'
-
-- name: Ensure antigen is applied in .zshrc after configuring
-  lineinfile:
-    path: '{{ ansible_env.HOME }}/.zshrc'
-    insertafter: 'antigen'
-    line: 'antigen apply'
