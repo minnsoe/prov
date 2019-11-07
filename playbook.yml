@@ -9,6 +9,7 @@
   roles:
     - role: system-utils
     - role: editors
+      tags: [editors]
     - role: development
     - role: misc
     - role: zsh

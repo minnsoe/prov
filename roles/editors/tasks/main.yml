@@ -15,6 +15,7 @@
   git:
     repo: 'https://github.com/syl20bnr/spacemacs'
     dest: ~/.emacs.d
+    version: develop
 
 - name: Install spacemacs configuration
   import_role:
