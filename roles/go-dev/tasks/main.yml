@@ -1,0 +1,11 @@
+---
+- name: Ensure go installed
+  package:
+    name: golang # matches name in debian as well as homebrew alias
+    state: present
+
+- name: Ensure default go workspace directory is present
+  file:
+    path: ~/go
+    state: directory
+    mode: '0755'
