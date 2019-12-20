@@ -14,6 +14,8 @@
     - role: misc
     - role: zsh
       tags: [zsh, shell]
+    - role: go-dev
+      tags: [go, golang, development]
     - role: node-dev
       tags: [node, development]
     - role: python-dev

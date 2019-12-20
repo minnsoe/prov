@@ -22,7 +22,6 @@
       - automake
       - nvm
       - rbenv
-      - go
       - rustup-init
       - sbt
     state: present
