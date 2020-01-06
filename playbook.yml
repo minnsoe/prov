@@ -20,5 +20,7 @@
       tags: [node, development]
     - role: python-dev
       tags: [python, development]
+    - role: shell-utils
+      tags: [shell, shell-utils, development]
     - role: alfred
       tags: [productivity, macos]
