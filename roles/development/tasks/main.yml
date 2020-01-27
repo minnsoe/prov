@@ -23,6 +23,5 @@
       - nvm
       - rbenv
       - rustup-init
-      - sbt
     state: present
     update_homebrew: yes
