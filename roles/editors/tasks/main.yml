@@ -3,6 +3,10 @@
   homebrew_tap: tap=d12frosted/emacs-plus state=present
   when: ansible_os_family|lower == 'darwin'
 
+- name: Tap into homebrew/cask-fonts
+  homebrew_tap: tap=homebrew/cask-fonts state=present
+  when: ansible_os_family|lower == 'darwin'
+
 - name: Install emacs
   homebrew: name=emacs-plus state=present
   when: ansible_os_family|lower == 'darwin'
@@ -22,6 +26,9 @@
     name: dotfiles
   vars:
     app: spacemacs
+
+- name: Install Source Code Pro font
+  homebrew_cask: name=font-source-code-pro state=present
 
 - name: Install Visual Studio Code
   homebrew_cask: name=visual-studio-code state=present
