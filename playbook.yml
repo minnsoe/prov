@@ -8,10 +8,12 @@
 
   roles:
     - role: system-utils
+      tags: [system]
     - role: editors
-      tags: [editors]
+      tags: [editors, development]
     - role: development
     - role: misc
+      tags: [misc, macos]
     - role: zsh
       tags: [zsh, shell]
     - role: go-dev
