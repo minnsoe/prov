@@ -6,7 +6,3 @@
     greedy: true
     update_homebrew: yes
 
-- name: Disable macOS keyboard shortcut for spotlight
-  command: >-
-    /usr/libexec/PlistBuddy ~/Library/Preferences/com.apple.symbolichotkeys.plist -c
-    "Set AppleSymbolicHotKeys:64:enabled false"
