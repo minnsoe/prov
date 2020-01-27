@@ -4,6 +4,7 @@
     repo: git@github.com:MinnSoe/dotfiles.git
     dest: ~/dotfiles
     force: yes
+    accept_hostkey: yes
   when: use_dotfiles
   become: no
 
