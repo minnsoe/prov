@@ -9,3 +9,9 @@
     path: ~/go
     state: directory
     mode: '0755'
+
+- name: Install development go packages
+  command: 'go get -u {{ item }}'
+  with_items:
+    - golang.org/x/lint/golint
+    - golang.org/x/tools/cmd/godoc
