@@ -4,7 +4,9 @@
   when: ansible_os_family|lower == 'darwin'
 
 - name: Tap into homebrew/cask-fonts
-  homebrew_tap: tap=homebrew/cask-fonts state=present
+  homebrew_tap:
+    name: homebrew/cask-fonts
+    state: present
   when: ansible_os_family|lower == 'darwin'
 
 - name: Install emacs
@@ -28,7 +30,9 @@
     app: spacemacs
 
 - name: Install Source Code Pro font
-  homebrew_cask: name=font-source-code-pro state=present
+  homebrew_cask:
+    name: "font-source-code-pro"
+    state: present
 
 - name: Install Visual Studio Code
   homebrew_cask: name=visual-studio-code state=present
