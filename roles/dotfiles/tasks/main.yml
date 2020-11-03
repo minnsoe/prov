@@ -3,7 +3,8 @@
   git:
     repo: 'https://github.com/MinnSoe/dotfiles.git'
     dest: ~/dotfiles
-    force: yes
+    force: no
+    update: no
   when: use_dotfiles
   become: no
 
