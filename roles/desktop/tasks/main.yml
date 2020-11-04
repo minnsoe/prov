@@ -1,0 +1,33 @@
+---
+- name: Set macOS dock settings
+  community.general.osx_defaults:
+    domain: com.apple.dock
+    key: "{{ item.key }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    state: present
+  loop:
+    - key: orientation
+      type: string
+      value: left
+    - key: autohide
+      type: int
+      value: 1
+    - key: largesize
+      type: float
+      value: 42
+    - key: magnification
+      type: int
+      value: 1
+    - key: tilesize
+      type: float
+      value: 32
+  register: dock_updated
+  when: ansible_os_family|lower == 'darwin'
+  tags:
+    - dock
+
+- name: Kill macOS dock
+  command: killall Dock
+  become: yes
+  when: dock_updated is defined and dock_updated.changed

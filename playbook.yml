@@ -26,3 +26,5 @@
       tags: [shell, shell-utils, development]
     - role: alfred
       tags: [productivity, macos]
+    - role: desktop
+      tags: [desktop, macos]
