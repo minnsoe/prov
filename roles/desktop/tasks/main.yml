@@ -31,3 +31,28 @@
   command: killall Dock
   become: yes
   when: dock_updated is defined and dock_updated.changed
+
+- name: Set macOS Interface Dark Mode
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleInterfaceStyle
+    type: string
+    value: Dark
+  when: ansible_os_family|lower == 'darwin'
+  tags:
+    - dark
+
+- name: Show all extensions in finder
+  community.general.osx_defaults:
+    domain: NSGlobalDomain
+    key: AppleShowAllExtensions
+    type: bool
+    value: yes
+  register: finder_updated
+  when: ansible_os_family|lower == 'darwin'
+  tags:
+    - dark
+
+- name: Kill macOS finder
+  command: killall Finder
+  when: finder_updated is defined and finder_updated.changed
