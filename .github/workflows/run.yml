@@ -1,0 +1,20 @@
+name: check-playbook
+on: [push]
+jobs:
+  check-playbook-runnable:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install dependencies
+        run: |
+          pip3 install jmespath ansible
+          ansible-galaxy install -r requirements.yml
+      - name: Check playbook syntax
+        run: |
+          ansible-playbook --syntax-check playbook.yml
+      - name: Run playbook
+        run: |
+          ansible-playbook playbook.yml
