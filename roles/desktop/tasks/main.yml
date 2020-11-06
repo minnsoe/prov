@@ -48,11 +48,28 @@
     key: AppleShowAllExtensions
     type: bool
     value: yes
-  register: finder_updated
+  register: finder_ext_update
   when: ansible_os_family|lower == 'darwin'
   tags:
     - dark
 
+- name: Ensure finder grouping properties set
+  command: "plutil -replace {{ item.key }} -{{ item.type }} '{{ item.value }}' ~/Library/Preferences/com.apple.finder.plist"
+  loop:
+    - key: "DesktopViewSettings.GroupBy"
+      type: "string"
+      value: "Kind"
+    - key: "FXPreferredGroupBy"
+      type: "string"
+      value: "Kind"
+    - key: "DesktopViewSettings.IconViewSettings.arrangeBy"
+      type: "string"
+      value: "dateAdded"
+  register: finder_update
+  when: ansible_os_family|lower == 'darwin'
+  tags:
+    - finder
+
 - name: Kill macOS finder
   command: killall Finder
-  when: finder_updated is defined and finder_updated.changed
+  when: (finder_ext_update is defined and finder_ext_update.changed) or (finder_update is defined and finder_update is succeeded)
