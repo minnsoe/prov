@@ -14,9 +14,6 @@
       - htop-osx
       - coreutils
       - tmux
-      # Version Control
-      - git
-      - hg
       # Development
       - autoconf
       - automake
