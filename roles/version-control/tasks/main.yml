@@ -1,0 +1,21 @@
+---
+- name: Install git version control packages
+  homebrew:
+    name:
+      - git
+      - git-lfs
+    state: present
+    update_homebrew: yes
+  when: ansible_os_family|lower == 'darwin'
+  tags:
+    - git
+
+- name: Install mercurial version control packages
+  homebrew:
+    name:
+      - hg
+    state: present
+    update_homebrew: yes
+  when: ansible_os_family|lower == 'darwin'
+  tags:
+    - hg
