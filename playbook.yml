@@ -12,6 +12,7 @@
     - role: editors
       tags: [editors, development]
     - role: development
+      tags: [development]
     - role: misc
       tags: [misc, macos]
     - role: zsh
@@ -29,4 +30,10 @@
     - role: desktop
       tags: [desktop, macos]
     - role: version-control
-
+      tags: [vcs]
+    - role: file
+      tags: [file, development]
+    - role: entertainment
+      tags: [entertainment, macos]
+    - role: web
+      tags: [web, macos]

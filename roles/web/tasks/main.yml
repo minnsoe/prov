@@ -1,0 +1,26 @@
+---
+- name: Install web browsers
+  homebrew_cask:
+    name:
+      - google-chrome-beta
+      - firefox-developer-edition
+      - safari-technology-preview
+    state: present
+    update_homebrew: yes
+  when: ansible_os_family|lower == 'darwin'
+
+- name: Install chromedriver
+  homebrew_cask:
+    name:
+      - chromedriver
+    state: present
+    update_homebrew: yes
+  when: ansible_os_family|lower == 'darwin'
+
+- name: Install geckodriver
+  homebrew:
+    name:
+      - geckodriver
+    state: present
+    update_homebrew: yes
+  when: ansible_os_family|lower == 'darwin'

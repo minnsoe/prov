@@ -3,10 +3,7 @@
   homebrew_cask:
     name:
       - iterm2
-      - google-chrome-beta
-      - firefox-developer-edition
       - 1password
-      - spotify
       - slack
       - adobe-creative-cloud
     state: present

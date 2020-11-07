@@ -4,9 +4,7 @@
     name: '{{ item[ansible_os_family|lower] | default(item["default"]) }}'
     state: 'present'
   with_items:
-    # CRLF and LF line endings converter
-    - { default: 'dos2unix' }
     # fuzzy file finder
-    - { default: 'fzf' }
-    # fast grep alternative
-    - { default: 'ripgrep' }
+    - default: 'fzf'
+    # terminal multiplexer
+    - default: 'tmux'

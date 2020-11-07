@@ -4,5 +4,11 @@
     name: '{{ item[ansible_os_family|lower] | default(item["default"]) }}'
     state: 'present'
   with_items:
-    - { default: 'stow' }
-    - { default: 'direnv' }
+    - default: stow
+    - default: direnv
+    - default: socat
+    - default: coreutils
+    - default: automake
+    - default: autoconf
+    - default: htop
+      darwin: htop-osx
