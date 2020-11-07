@@ -1,0 +1,14 @@
+---
+- name: Install file processing util packages
+  package:
+    name: '{{ item[ansible_os_family|lower] | default(item["default"]) }}'
+    state: 'present'
+  with_items:
+    # CRLF and LF line endings converter
+    - default: 'dos2unix'
+    # fast grep alternative
+    - default: 'ripgrep'
+    # json processor
+    - default: 'jq'
+    # yaml processor
+    - default: 'yq'

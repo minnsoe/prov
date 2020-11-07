@@ -1,23 +1,7 @@
 ---
-- name: Install cask dependencies
-  homebrew_cask:
-    name:
-      - java
-    state: present
-    update_homebrew: yes
-
-- name: Install development base packages
+- name: Install misc development base packages
   homebrew:
     name:
-      # TODO: move into system-utils role
-      - socat
-      - htop-osx
-      - coreutils
-      - tmux
-      # Development
-      - autoconf
-      - automake
-      - nvm
       - rbenv
       - rustup-init
     state: present

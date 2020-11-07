@@ -1,0 +1,17 @@
+---
+- name: Install entertainment homebrew cask applications
+  homebrew_cask:
+    name:
+      - spotify
+      - vlc
+    state: present
+    update_homebrew: yes
+  when: ansible_os_family|lower == 'darwin'
+
+- name: Install entertainment homebrew packages
+  homebrew:
+    name:
+      - youtube-dl
+    state: present
+    update_homebrew: yes
+  when: ansible_os_family|lower == 'darwin'
