@@ -1,0 +1,19 @@
+---
+- name: Ensure alfred package installed
+  homebrew_cask:
+    name: alfred
+    state: upgraded
+    greedy: true
+    update_homebrew: yes
+  when: ansible_os_family|lower == 'darwin'
+
+- name: Install packages from macOS app store
+  import_role:
+    name: geerlingguy.mas
+  vars:
+    mas_installed_apps:
+      - name: "Todoist: To-Do List & Tasks"
+        id: 585829637
+      - name: "Microsoft Remote Desktop"
+        id: 1295203466
+  when: ansible_os_family|lower == 'darwin'
