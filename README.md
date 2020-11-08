@@ -1,6 +1,6 @@
 # prov
 
-[![Travis (.com)](https://img.shields.io/travis/com/MinnSoe/prov.svg?style=flat-square)](https://travis-ci.com/MinnSoe/prov)
+![Check Playbook Action](https://github.com/MinnSoe/prov/workflows/check-playbook/badge.svg)
 
 This repository is used to provision my environment using Ansible playbooks.
 
