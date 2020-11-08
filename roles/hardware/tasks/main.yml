@@ -1,0 +1,10 @@
+---
+- name: Install hardware drivers from homebrew cask drivers
+  homebrew_cask:
+    name: "{{ item }}"
+    state: present
+    update_homebrew: yes
+  loop:
+    - homebrew/cask-drivers/logitech-options
+    - homebrew/cask-drivers/3dconnexion
+  when: ansible_os_family|lower == 'darwin'

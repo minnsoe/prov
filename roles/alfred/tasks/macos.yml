@@ -1,8 +1,0 @@
----
-- name: Ensure alfred package installed
-  homebrew_cask:
-    name: alfred
-    state: upgraded
-    greedy: true
-    update_homebrew: yes
-

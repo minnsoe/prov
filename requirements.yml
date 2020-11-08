@@ -3,3 +3,6 @@ collections:
   - name: https://github.com/ansible-collections/community.general
     type: git
     version: 4c379bd3b2147710c3e7a1d900cddf47a6b7cd42 
+
+roles:
+  - name: geerlingguy.mas
