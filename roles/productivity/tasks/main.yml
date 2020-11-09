@@ -1,10 +1,14 @@
 ---
-- name: Ensure alfred package installed
+- name: Ensure productivity casks installed
   homebrew_cask:
-    name: alfred
+    name: "{{ item }}"
     state: upgraded
-    greedy: true
     update_homebrew: yes
+  loop:
+    # app launcher
+    - alfred
+    # terminal emulator
+    - alacritty
   when: ansible_os_family|lower == 'darwin'
 
 - name: Install packages from macOS app store
@@ -17,3 +21,9 @@
       - name: "Microsoft Remote Desktop"
         id: 1295203466
   when: ansible_os_family|lower == 'darwin'
+
+- name: Install alacritty dotfiles configuration
+  import_role:
+    name: dotfiles
+  vars:
+    app: alacritty
