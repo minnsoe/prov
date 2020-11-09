@@ -21,6 +21,8 @@
       - name: "Microsoft Remote Desktop"
         id: 1295203466
   when: ansible_os_family|lower == 'darwin'
+  tags:
+    - mas
 
 - name: Install alacritty dotfiles configuration
   import_role:

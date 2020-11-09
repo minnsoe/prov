@@ -17,4 +17,4 @@ jobs:
           ansible-playbook --syntax-check playbook.yml
       - name: Run playbook
         run: |
-          ansible-playbook playbook.yml
+          ansible-playbook playbook.yml --skip-tags mas
