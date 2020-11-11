@@ -29,10 +29,13 @@
   vars:
     app: spacemacs
 
-- name: Install Source Code Pro font
+- name: Install editor fonts
   homebrew_cask:
-    name: "font-source-code-pro"
+    name: "{{ item }}"
     state: present
+  with_items:
+    - font-source-code-pro
+    - font-fira-mono-nerd-font
 
 - name: Install Visual Studio Code
   homebrew_cask: name=visual-studio-code state=present

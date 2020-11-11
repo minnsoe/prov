@@ -8,3 +8,11 @@
     - default: 'fzf'
     # terminal multiplexer
     - default: 'tmux'
+    # cross-shell prompt
+    - default: 'starship'
+
+- name: Link dotfiles starship configuration
+  include_role:
+    name: dotfiles
+  vars:
+    app: starship
