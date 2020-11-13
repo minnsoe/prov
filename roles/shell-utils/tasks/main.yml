@@ -10,6 +10,13 @@
     - default: 'tmux'
     # cross-shell prompt
     - default: 'starship'
+    # cat clone with syntax highlighting and Git integration
+    - default: 'bat'
+    # zsh antigen plugin manager alternative
+    - default: 'antibody'
+    # simple, fast and user-friendly alternative to find
+    - default: 'fd'
+      debian: 'fd-find'
 
 - name: Link dotfiles starship configuration
   include_role:
