@@ -17,6 +17,8 @@
     # simple, fast and user-friendly alternative to find
     - default: 'fd'
       debian: 'fd-find'
+    # load/unload environment variables based on $PWD
+    - default: 'direnv'
 
 - name: Link dotfiles starship configuration
   include_role:
