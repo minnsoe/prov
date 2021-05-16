@@ -1,9 +1,25 @@
 ---
-- import_tasks: install.yml
-  tags:
-    - zsh
-    - install
+- name: Ensure zsh and dependencies are present
+  ansible.builtin.package:
+    name:
+      - zsh
+      - git
+    state: present
 
-- import_tasks: configure.yml
-  tags:
-    - configure
+- name: Set zsh path to system zsh
+  ansible.builtin.command: which zsh
+  register: zsh_path
+
+- name: Set zsh path to homebrew zsh
+  ansible.builtin.set_fact: zsh_path="{{ zsh_homebrew_path }}"
+  when: ansible_os_family|lower == "darwin"
+
+- name: Set zsh as default user shell for "{{ ansible_user_id }}"
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: "{{ zsh_path }}"
+
+- name: Clone zinit into "{{ zsh_zinit_path }}"
+  ansible.builtin.git:
+    repo: https://github.com/zdharma/zinit.git
+    dest: "{{ zsh_zinit_path }}"
