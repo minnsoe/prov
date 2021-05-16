@@ -20,19 +20,7 @@
     # load/unload environment variables based on $PWD
     - default: 'direnv'
 
-- name: Link dotfiles starship configuration
-  include_role:
-    name: dotfiles
-  vars:
-    app: starship
-
 - name: Install tmux plugin manager
   git:
     repo: 'https://github.com/tmux-plugins/tpm'
     dest: '~/.tmux/plugins/tpm'
-
-- name: Link dotfiles tmux configuration
-  include_role:
-    name: dotfiles
-  vars:
-    app: tmux

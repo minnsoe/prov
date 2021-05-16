@@ -23,9 +23,3 @@
   when: ansible_os_family|lower == 'darwin'
   tags:
     - mas
-
-- name: Install alacritty dotfiles configuration
-  import_role:
-    name: dotfiles
-  vars:
-    app: alacritty

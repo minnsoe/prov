@@ -23,12 +23,6 @@
     dest: ~/.emacs.d
     version: develop
 
-- name: Install spacemacs configuration
-  import_role:
-    name: dotfiles
-  vars:
-    app: spacemacs
-
 - name: Install editor fonts
   homebrew_cask:
     name: "{{ item }}"
