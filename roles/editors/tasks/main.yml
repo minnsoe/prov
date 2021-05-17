@@ -1,41 +1,24 @@
 ---
-- name: Tap into d12frosted/emacs-plus
-  homebrew_tap: tap=d12frosted/emacs-plus state=present
-  when: ansible_os_family|lower == 'darwin'
-
-- name: Tap into homebrew/cask-fonts
-  homebrew_tap:
-    name: homebrew/cask-fonts
-    state: present
-  when: ansible_os_family|lower == 'darwin'
-
 - name: Install emacs
-  homebrew: name=emacs-plus state=present
+  community.general.homebrew_cask:
+    name: railwaycat/emacsmacport/emacs-mac
+    state: latest
   when: ansible_os_family|lower == 'darwin'
-
-- name: Setup emacs startup daemon
-  shell: brew services start d12frosted/emacs-plus/emacs-plus
-  when: ansible_os_family|lower == 'darwin'
-
-- name: Install spacemacs
-  git:
-    repo: 'https://github.com/syl20bnr/spacemacs'
-    dest: ~/.emacs.d
-    version: develop
-
-- name: Install spacemacs configuration
-  import_role:
-    name: dotfiles
-  vars:
-    app: spacemacs
 
 - name: Install editor fonts
-  homebrew_cask:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - font-source-code-pro
-    - font-fira-mono-nerd-font
+  community.general.homebrew_cask:
+    name:
+      - homebrew/cask-fonts/font-fira-mono-nerd-font
+    state: latest
+  when: ansible_os_family|lower == 'darwin'
+
+- name: Install doom emacs
+  ansible.builtin.git:
+    repo: "https://github.com/hlissner/doom-emacs"
+    dest: "${HOME}/.emacs.d"
+    depth: 1
 
 - name: Install Visual Studio Code
-  homebrew_cask: name=visual-studio-code state=present
+  community.general.homebrew_cask:
+    name: visual-studio-code
+    state: latest

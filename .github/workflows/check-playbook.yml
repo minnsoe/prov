@@ -12,6 +12,10 @@ jobs:
         run: |
           pip3 install jmespath ansible
           ansible-galaxy install -r requirements.yml
+      - name: Update homebrew
+        run: |
+          brew update
+          brew --version
       - name: Check playbook syntax
         run: |
           ansible-playbook --syntax-check playbook.yml
