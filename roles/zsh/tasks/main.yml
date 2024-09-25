@@ -1,9 +1,26 @@
 ---
-- import_tasks: install.yml
-  tags:
-    - zsh
-    - install
+- name: Ensure zsh present
+  package:
+    name: zsh
+    state: present
+  when: not is_darwin
 
-- import_tasks: configure.yml
-  tags:
-    - configure
+- name: Get zsh location from PATH
+  command: which zsh
+  register: zsh_path
+  when: not is_darwin
+
+- name: Ensure zsh ({{ zsh_path.stdout }}) is in allowed shells (/etc/shells)
+  ansible.builtin.lineinfile:
+    path: '/etc/shells'
+    line: '{{ zsh_path.stdout }}'
+    state: present
+  become: true
+  when: not is_darwin
+
+- name: Set zsh as default shell for {{ ansible_user_id }}
+  user:
+    name: '{{ ansible_user_id }}'
+    shell: '{{ zsh_path.stdout }}'
+  become: true
+  when: not is_darwin

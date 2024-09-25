@@ -1,0 +1,9 @@
+---
+- name: Ensure fnm is installed
+  community.general.homebrew:
+    name: fnm
+    state: present
+  when: is_darwin
+
+- name: Install latest long term support node runtime
+  shell: fnm install --lts

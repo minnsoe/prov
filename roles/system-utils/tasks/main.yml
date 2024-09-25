@@ -1,7 +1,16 @@
 ---
-- name: System utilities for macOS
-  import_tasks: macos.yml
-  when: ansible_os_family|lower == 'darwin'
 
-- name: Install common system utilities
-  import_tasks: common.yml
+- name: Install macOS cask system utilities
+  community.general.homebrew_cask:
+    name:
+      - tailscale
+    state: present
+  when: is_darwin
+
+- name: Install system utilities for {{ ansible_os_family }}
+  package:
+    name: '{{ item[ansible_os_family|lower] | default(item["default"]) }}'
+    state: 'present'
+  with_items:
+    - default: socat
+    - default: htop

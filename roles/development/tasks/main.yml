@@ -1,8 +1,0 @@
----
-- name: Install misc development base packages
-  homebrew:
-    name:
-      - rbenv
-      - rustup-init
-    state: present
-    update_homebrew: yes

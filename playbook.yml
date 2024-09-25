@@ -4,39 +4,28 @@
   connection: local
 
   vars:
-    use_dotfiles: true
+    is_darwin: "{{ ansible_os_family|lower == 'darwin' }}"
 
   roles:
+    - role: desktop
+      tags: [desktop]
+    - role: emacs
+      tags: [emacs, editors, development]
+    - role: fonts
+      tags: [fonts]
+    - role: golang
+      tags: [go, golang, development]
+    - role: multimedia
+      tags: [multimedia]
+    - role: node
+      tags: [node, nodejs, development]
+    - role: python
+      tags: [python, development]
     - role: system-utils
       tags: [system]
-    - role: editors
-      tags: [editors, development]
-    - role: development
-      tags: [development]
-    - role: misc
-      tags: [misc, macos]
+    - role: user-utils
+      tags: [user-utils, development]
+    - role: visual-studio-code
+      tags: [visual-studio-code, vscode, editors, development]
     - role: zsh
       tags: [zsh, shell]
-    - role: go-dev
-      tags: [go, golang, development]
-    - role: node-dev
-      tags: [node, development]
-    - role: python-dev
-      tags: [python, development]
-    - role: shell-utils
-      tags: [shell, shell-utils, development]
-    - role: desktop
-      tags: [desktop, macos]
-    - role: version-control
-      tags: [vcs]
-    - role: file
-      tags: [file, development]
-    - role: entertainment
-      tags: [entertainment, macos]
-    - role: web
-      tags: [web, macos]
-    - role: productivity
-      tags: [productivity, macos]
-    - role: hardware
-      tags: [hardware, drivers, macos]
-

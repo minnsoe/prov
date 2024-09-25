@@ -1,0 +1,14 @@
+---
+- name: Ensure go installed
+  ansible.builtin.package:
+    name: golang # matches name in debian as well as homebrew
+    state: present
+
+- name: Install global development go packages
+  shell: 'go install {{ item }}'
+  with_items:
+    - github.com/cweill/gotests/gotests@latest
+    - github.com/go-delve/delve/cmd/dlv@latest
+    - golang.org/x/tools/cmd/godoc@latest
+    - golang.org/x/tools/cmd/goimports@latest
+    - golang.org/x/tools/cmd/gorename@latest

@@ -1,0 +1,62 @@
+---
+- name: Ensure file utility packages are installed
+  ansible.builtin.package:
+    name: '{{ item[ansible_os_family|lower] | default(item["default"]) }}'
+    state: present
+  with_items:
+    # cat clone with syntax highlighting and Git integration
+    - default: 'bat'
+    # GNU file, shell and text manipulation utilities
+    - default: 'coreutils'
+    # CRLF and LF line endings converter
+    - default: 'dos2unix'
+    # simple, fast and user-friendly alternative to find
+    - default: 'fd'
+      debian: 'fd-find'
+    # fuzzy file finder
+    - default: 'fzf'
+    # version control
+    - default: 'git'
+    # json processor
+    - default: 'jq'
+    # fast grep alternative
+    - default: 'ripgrep'
+    # yaml processor
+    - default: 'yq'
+  tags:
+    - file
+
+- name: Ensure shell packages are installed
+  ansible.builtin.package:
+    name: '{{ item[ansible_os_family|lower] | default(item["default"]) }}'
+    state: present
+  with_items:
+    # dotfile manager
+    - default: 'chezmoi'
+    # terminal multiplexer
+    - default: 'tmux'
+    # cross-shell prompt
+    - default: 'starship'
+    # load/unload environment variables based on $PWD
+    - default: 'direnv'
+  tags:
+    - shell
+
+- name: Add derailed/k9s homebrew tap
+  community.general.homebrew_tap:
+    name: derailed/k9s
+    state: present
+  when: is_darwin
+  tags:
+    - k8s
+
+- name: Ensure cloud packages are installed
+  community.general.homebrew:
+    name:
+      - 'kubectx'
+      - 'kubectl'
+      - 'derailed/k9s/k9s'
+    state: present
+  when: is_darwin
+  tags:
+    - k8s

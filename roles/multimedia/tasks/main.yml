@@ -1,0 +1,15 @@
+---
+- name: Install multimedia homebrew cask applications
+  community.general.homebrew_cask:
+    name:
+      - spotify
+      - vlc
+    state: present
+  when: is_darwin
+
+- name: Install multimedia homebrew packages
+  community.general.homebrew:
+    name:
+      - yt-dlp
+    state: present
+  when: is_darwin

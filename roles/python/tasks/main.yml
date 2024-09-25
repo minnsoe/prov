@@ -1,0 +1,8 @@
+---
+- name: Ensure pyenv and pyenv-virtualenv installed
+  community.general.homebrew:
+    name:
+      - pyenv
+      - pyenv-virtualenv
+    state: present
+  when: is_darwin
