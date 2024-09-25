@@ -1,0 +1,18 @@
+---
+- name: Add d12frosted/emacs-plus homebrew tap
+  community.general.homebrew_tap:
+    name: d12frosted/emacs-plus
+    state: present
+  when: is_darwin
+
+- name: Install emacs
+  community.general.homebrew:
+    name: emacs-plus@30
+    state: present
+  when: is_darwin
+
+- name: Setup emacs startup daemon
+  community.general.homebrew_services:
+    name: d12frosted/emacs-plus/emacs-plus@30
+    state: present
+  when: is_darwin

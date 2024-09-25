@@ -1,0 +1,6 @@
+---
+- name: Install Visual Studio Code
+  community.general.homebrew_cask:
+    name: visual-studio-code
+    state: present
+  when: is_darwin

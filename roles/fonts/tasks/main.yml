@@ -1,0 +1,8 @@
+---
+- name: Install editor fonts
+  community.general.homebrew_cask:
+    name:
+      - font-source-code-pro
+      - font-fira-mono-nerd-font
+    state: present
+  when: ansible_os_family|lower == 'darwin'
